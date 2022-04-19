@@ -7,6 +7,8 @@ header {
     padding: 10px;
     background-color: beige;
     border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
 }
 main {
     flex: 1;
