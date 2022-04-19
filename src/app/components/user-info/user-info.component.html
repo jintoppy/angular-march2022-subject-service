@@ -1,1 +1,2 @@
-<span>Guest User</span>
+<span *ngIf="!username">Guest User</span>
+<span *ngIf="username">Welcome {{username}}</span>

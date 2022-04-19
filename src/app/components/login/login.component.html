@@ -1,3 +1,3 @@
-<input type="text">
+<input type="text" #myInput>
 
-<button>Login</button>
+<button (click)="onClick(myInput.value)">Login</button>

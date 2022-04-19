@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-user-info',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
-
-  constructor() { }
+  username:string = '';
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.userChange$.subscribe((val:string) => {
+      this.username = val;
+    });
   }
 
 }
