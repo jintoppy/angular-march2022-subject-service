@@ -8,7 +8,12 @@
     <h2 *ngIf="!isLoggedIn">Please Login...</h2>
       <app-login></app-login>            
       <button (click)="showList()">Show User List</button>
-      <app-user-list *ngIf="showUserList"></app-user-list>
+      <app-user-list *ngIf="showUserList"></app-user-list>      
+
+      <div>
+        <h3>Search</h3>
+        <input type="text" [formControl]="searchCtrl">
+      </div>
   </main>
   <footer>
     This is the footer
