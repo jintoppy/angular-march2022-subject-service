@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/user.service';
 import { FormControl } from '@angular/forms';
-import { filter, distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import { filter, distinctUntilChanged, debounceTime, switchMap, map } from 'rxjs/operators';
+import { User } from './models/user';
  
 @Component({
   selector: 'app-root',
@@ -31,10 +32,12 @@ export class AppComponent {
     .pipe(
       debounceTime(200),
       filter((val:string) => val.length > 3),
-      distinctUntilChanged()
+      distinctUntilChanged(),
+      switchMap((val:string) => this.userService.searchUsers(val)),
+      map((users: User[]) => users.slice(0, 3))
     )
-    .subscribe((val:string) => {
-      console.log(val);
+    .subscribe((users: User[]) => {
+        console.log(users);
     });
 
     this.userService.userChange$.subscribe((val:string | null) => {
