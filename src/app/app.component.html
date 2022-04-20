@@ -4,9 +4,11 @@
     <app-user-info></app-user-info>
   </header>
   <main>
-    Content area
-      <app-login></app-login>
-            
+    <h2 *ngIf="isLoggedIn">User is Logged In</h2>
+    <h2 *ngIf="!isLoggedIn">Please Login...</h2>
+      <app-login></app-login>            
+      <button (click)="showList()">Show User List</button>
+      <app-user-list *ngIf="showUserList"></app-user-list>
   </main>
   <footer>
     This is the footer

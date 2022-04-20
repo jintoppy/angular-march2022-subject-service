@@ -7,11 +7,15 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
-  username:string = '';
-  constructor(private userService: UserService) { }
+  username:string | null = '';
+  constructor(private userService: UserService) {
+    console.log('inside userInfo component constructor');
+    
+   }
 
-  ngOnInit(): void {
-    this.userService.userChange$.subscribe((val:string) => {
+  ngOnInit(): void {    
+    console.log('inside userInfo component ngOnInit');
+    this.userService.userChange$.subscribe((val:string | null) => {
       this.username = val;
     });
   }
