@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, ReplaySubject, AsyncSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { SearchResult } from './models/search';
+import { SearchResult, RepoSearchResult } from './models/search';
 import { User } from './models/user';
 
 @Injectable({
@@ -31,6 +31,14 @@ export class UserService {
     return this.http.get<SearchResult>(url)
       .pipe(
         map((result: SearchResult) => result.items)
+      )
+  }
+
+  searchRepos(q:string){
+    const url = `https://api.github.com/search/repositories?q=${q}`;
+    return this.http.get<RepoSearchResult>(url)
+      .pipe(
+        map((result: RepoSearchResult) => result.items)
       )
   }
 }
